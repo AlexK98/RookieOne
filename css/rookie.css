@@ -1,0 +1,266 @@
+/* rookie.css - styles for RookieOne test-site project */
+
+* { box-sizing: border-box; }
+body {
+	text-align: center;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	background-color: #20201E;
+	color: #f0f0f0;
+	font-size: 16px;
+}
+h2 { color: #C3DF26; }
+
+/* =============== SPACERS =============== */
+.spacer10 { margin: 0; padding: 0; height: 10px; }
+.spacer30 { margin: 0; padding: 0; height: 30px; }
+.spacer60 { margin: 0; padding: 0; height: 60px; }
+.hider    { display: none; }
+
+/* =============== BUTTONS =============== */
+.btn {
+	color: white;
+	background-color: #A8C503;
+	cursor: pointer;
+	font-size: 20px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #42413D;
+	border-radius: 5px;
+	border: 1px solid #C3DF26;
+	position: relative;
+}
+.btn:hover { border-color: #FF8C00; background-color: #FF981A; }
+
+.btnR {
+	color: white;
+	background-color: #bf302a;
+	cursor: pointer;
+	font-size: 20px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #42413D;
+	border-radius: 5px;
+	border: 1px solid #ff3e31;
+	position: relative;
+}
+.btnR:hover { border-color: #ff3e31; background-color: #ff3e31; }
+
+:disabled       { border-color: #a3a3a3; background-color: #6b6a66; }
+:disabled:hover { border-color: #a3a3a3; background-color: #6b6a66; }
+
+.btn1      { padding: 12px 24px; } /* bigger button */
+.btn2      { padding:  7px 17px; } /* smaller button */
+
+/* =============== OFFSETS =============== */
+.off_L     { left:  5px; margin-left:  5px; }
+.off_R     { right: 5px; margin-right: 5px; }
+
+/* =============== FLOATS =============== */
+.float_L   { float: left; }
+.float_R   { float: right; }
+
+/* =============== DISPLAY =============== */
+.block  {display: block;}
+.iblock {display: inline-block;}
+.inline {display: inline;}
+.table  {display: table;}
+.tcell  {display: table-cell;}
+.tcol   {display: table-column;}
+.trow   {display: table-row;}
+
+/* =============== TOP/BOTTOM MARGINS and PADDINGS =============== */
+.mb20 { margin-bottom: 20px; }
+.mb10 { margin-bottom: 10px; }
+.mb05 { margin-bottom:  5px; }
+.mt20 { margin-top: 20px; }
+.mt10 { margin-top: 10px; }
+.mt05 { margin-top:  5px; }
+
+.pa20 { padding: 20px; }
+
+.pb20 { padding-bottom: 20px; }
+.pb10 { padding-bottom: 10px; }
+.pb05 { padding-bottom:  5px; }
+
+.pt20 { padding-top: 20px; }
+.pt10 { padding-top: 10px; }
+.pt05 { padding-top:  5px; }
+
+.pl20 { padding-left: 20px; }
+.pl10 { padding-left: 10px; }
+.pl05 { padding-left:  5px; }
+
+.pr20 { padding-right: 20px; }
+.pr10 { padding-right: 10px; }
+.pr05 { padding-right:  5px; }
+
+/* =============== BROWSE BUTTON=============== */
+input[type="file"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
+/* =============== SMALL TEXT AND LINK =============== */
+.smaller { color: #a3a3a3; font-size: 12px; }
+a.smaller { color: #C3DF26; text-decoration: none; font-size: 12px; }
+a.smaller:hover { color: #FF981A; }
+a.smaller:active { color: #FF981A; }
+
+/* =============== HEADER =============== */
+.header {
+	color: #f0f0f0;
+	position: relative;
+	background-image: linear-gradient(45deg, #C3DF26, #C3DF26, #758e03, #C3DF26, #C3DF26);
+	border: none;
+	border-bottom: 3px solid white;
+	width: 100%;
+	height: 60px;
+}
+.header:after   { content: ""; display: table; clear: both; }
+.header .side   { width: 35%; }
+.header .middle { width: 30%; }
+
+.logoText                         { color: white; font-size: 30px; text-decoration: none; }
+.logoText:hover, .logoText:active { text-shadow: 0 2px 2px #415203; }
+.username {
+	font-size: 20px;
+	color: black;
+	position: relative;
+	text-shadow: 0 2px 2px #91aa03;
+	top: 10px;
+	right: 10px;
+}
+
+/* =============== CUSTOM CHECKBOX by W3SCHOOL===============*/
+/* Customize the label (the container) */
+.chbox_container {
+	display: table;
+	text-align: left;
+	color: #a3a3a3;
+	position: relative;
+	padding-left: 33px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	margin-right: 3px;
+	cursor: pointer;
+	user-select: none;
+}
+/* Hide the browser's default checkbox */
+.chbox_container input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+/* Create a custom checkbox */
+.chbox_checkmark {
+	position: absolute;
+	top: -2px;
+	left: 5px;
+	height: 20px;
+	width: 20px;
+	background-color: #42413D;
+	border: 1px solid #4d4c48;
+}
+/* On mouse-over, add a green background color */
+.chbox_container:hover input ~ .chbox_checkmark {
+	background-color: #C3DF26;
+	border: 1px solid #C3DF26;
+}
+/* When the checkbox is checked, add a orange background */
+.chbox_container input:checked ~ .chbox_checkmark {
+	background-color: #FF8C00;
+	border: 1px solid #FF8C00;
+}
+/* Create the checkmark/indicator (hidden when not checked) */
+.chbox_checkmark:after {
+	display: none;
+	content: "";
+	position: absolute;
+}
+/* Show the checkmark when checked */
+.chbox_container input:checked ~ .chbox_checkmark:after {
+	display: block;
+}
+/* Style the checkmark/indicator */
+.chbox_container .chbox_checkmark:after {
+	left: 5px;
+	top: 1px;
+	width: 5px;
+	height: 9px;
+	border: solid white;
+	border-width: 0 3px 3px 0;
+	transform: rotate(45deg);
+}
+
+/* =============== WELCOME PAGE LOGO ===============*/
+.iLogo { border-radius: 50%; border: 3px solid #292925; }
+.iSize { width: 400px; height: 400px;}
+.iShadow { box-shadow: inset 0 0 20px 10px #292925; border-radius: 50%; }
+
+/* =============== INPUTS AND FORMS ===============*/
+.form        { background-color: #292925; border-radius: 5px; border: 1px solid #42413D; }
+.width456    { width: 456px; min-width: 300px; }
+.width678    { width: 678px; min-width: 400px; }
+.formTopLine { box-shadow: inset 0 18px 0 -14px #C3DF26; }
+
+.form_input {
+	outline: none;
+	width: 100%;
+	border-radius: 5px;
+	border: 1px solid #42413D;
+	padding: 9px;
+	margin-bottom: 10px;
+	background-color: #333330;
+	color: #C3DF26;
+}
+.form_input:hover          { background-color: #42413D; }
+.form_input:required:valid { background-color: #C3DF26; color: #20201E; }
+
+        ::placeholder { opacity: 0.55; color: #C3DF26; }
+.alertPH::placeholder { opacity: 1;    color: lightcoral; }
+
+.label      { text-align: left; padding-bottom: 5px; }
+.redmark    { text-decoration-style: dotted; color: #FF8C00; }
+.msg        { margin: 0 0 10px 0; padding: 0; }
+
+.userPic {
+	max-width: 314px;
+	min-width: 314px;
+	width: auto;
+	height: 314px;
+	border: 1px solid #42413D;
+	border-radius: 50px;
+	object-fit: cover;
+	object-position: 50% 50%;
+}
+.userPicShadow { box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+
+.text-msg    { width: auto; color: #C3DF26; }
+.text-alert  { width: auto; color: lightcoral; }
+
+/* =============== INPUTS AND FORMS ===============*/
+.profile        { display: table; width:100%; }
+.profile > div  { display: table-cell; vertical-align: middle; }
+.profile-label  { width: 100px; text-align: left; }
+.profile .input-area {
+	display: block;
+	width: 100%;
+	padding: 8px;
+	color: #C3DF26;
+	background-color: #333330;
+	border: 1px solid #42413D;
+	border-radius: 5px;
+}
+.profile .input-area:hover          { background-color: #42413D; }
+.profile .input-area:required:valid { background-color: #333330; color: #C3DF26; }
+
+.profile ::placeholder { font-style: italic;}
+.profile textarea { resize: none; }
+
+.col_green { color: #C3DF26; }

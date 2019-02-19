@@ -1,0 +1,1 @@
+<a href="manage_db.php" class="btn btn2 float_L off_L" title="Debug page: Manage DB">Manage DB</a>

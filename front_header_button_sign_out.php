@@ -1,0 +1,1 @@
+<a href="sign_out.php" class="btn btn2 float_R off_R" title="Looking forward to see your back soon.">Sign Out</a>

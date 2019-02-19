@@ -1,0 +1,1 @@
+<a href="sign_up.php" class="btn btn2 float_R off_R" title="Sign up and wander with us all over our world.">Sign Up</a>

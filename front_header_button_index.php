@@ -1,0 +1,1 @@
+<a href="index.php" class="logoText" title="Rookie-One Corp">Rookie-One Corp</a>
