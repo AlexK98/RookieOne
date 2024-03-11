@@ -97,7 +97,7 @@ class Placeholder {
 		$this->pass    = 'Some password only you will know';
 		$this->city    = 'E.g. Los Angeles';
 		$this->country = 'E.g. USA';
-		$this->about   = 'E.g. I\'m a fictional character in the Terminator franchise and one of the main protagonists of The Terminator, Terminator 2: Judgment Day and Terminator Genisys.';
+		$this->about   = 'E.g. I\'m a fictional character in the Terminator franchise and one of the main protagonists of The Terminator, Terminator 2: Judgment Day and Terminator Genesys.';
 		$this->gender  = 'E.g. Male, Female or Other';
 
 		$this->firstStyle = '';

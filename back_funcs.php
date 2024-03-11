@@ -22,11 +22,14 @@
 // ===============================================================
 // Validate UserData =============================================
 // ===============================================================
-function isEmpty($data) {
+function isEmpty(string $data): bool
+{
 	if (empty(trim($data))) { return true; }
 	return false;
 }
-function Sanitize($data) {
+
+function Sanitize($data)
+{
 	if (is_string($data)) {
 		return filter_var(strip_tags($data), FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
 	}
@@ -39,7 +42,8 @@ function Sanitize($data) {
 	return false;
 }
 
-function ValidateFirstName(UserVars $user) {
+function ValidateFirstName(UserVars $user): bool
+{
 	if (isEmpty($_POST['firstname'])) {
 		$user->firstnameErr = FIELD_REQUIRED;
 		return false;
@@ -51,7 +55,8 @@ function ValidateFirstName(UserVars $user) {
 	$user->firstname = Sanitize($_POST['firstname']);
 	return true;
 }
-function ValidateLastName(UserVars $user) {
+function ValidateLastName(UserVars $user): bool
+{
 	if (isEmpty($_POST['lastname'])) {
 		$user->lastnameErr = FIELD_REQUIRED;
 		return false;
@@ -63,7 +68,8 @@ function ValidateLastName(UserVars $user) {
 	$user->lastname = Sanitize($_POST['lastname']);
 	return true;
 }
-function ValidateEmail(UserVars $user) {
+function ValidateEmail(UserVars $user): bool
+{
 	if (isEmpty($_POST['email'])) {
 		$user->emailErr = FIELD_REQUIRED;
 		return false;
@@ -76,7 +82,8 @@ function ValidateEmail(UserVars $user) {
 	}
 	return true;
 }
-function ValidatePassword(UserVars $user) {
+function ValidatePassword(UserVars $user): bool
+{
 	if (isEmpty($_POST['password'])) {
 		$user->passErr = FIELD_REQUIRED;
 		return false;
@@ -88,7 +95,8 @@ function ValidatePassword(UserVars $user) {
 	$user->pass = Sanitize($_POST['password']);
 	return true;
 }
-function ValidateAbout(UserVars $user) {
+function ValidateAbout(UserVars $user): bool
+{
 	if ($_POST['about'] !== Sanitize($_POST['about'])) {
 		$user->aboutErr = FIELD_HACK_WARN;
 		return false;
@@ -96,7 +104,8 @@ function ValidateAbout(UserVars $user) {
 	$user->about = Sanitize($_POST['about']);
 	return true;
 }
-function ValidateCity(UserVars $user) {
+function ValidateCity(UserVars $user): bool
+{
 	if ($_POST['city'] !== Sanitize($_POST['city'])) {
 		$user->cityErr = FIELD_HACK_WARN;
 		return false;
@@ -104,7 +113,8 @@ function ValidateCity(UserVars $user) {
 	$user->city = Sanitize($_POST['city']);
 	return true;
 }
-function ValidateCountry(UserVars $user) {
+function ValidateCountry(UserVars $user): bool
+{
 	if ($_POST['country'] !== Sanitize($_POST['country'])) {
 		$user->countryErr = FIELD_HACK_WARN;
 		return false;
@@ -112,7 +122,8 @@ function ValidateCountry(UserVars $user) {
 	$user->country = Sanitize($_POST['country']);
 	return true;
 }
-function ValidateGender(UserVars $user) {
+function ValidateGender(UserVars $user): bool
+{
 	if ($_POST['gender'] !== Sanitize($_POST['gender'])) {
 		$user->genderErr = FIELD_HACK_WARN;
 		return false;
@@ -121,7 +132,8 @@ function ValidateGender(UserVars $user) {
 	return true;
 }
 
-function ValidateInput(UserVars $user) {
+function ValidateInput(UserVars $user): bool
+{
 	if ($_POST['submit'] === 'SignUp') {
 		$fn = ValidateFirstName($user);
 		$ln = ValidateLastName($user);
@@ -168,11 +180,13 @@ function ValidateInput(UserVars $user) {
 	return true;
 }
 
-function ValidateFileName($data) {
+function ValidateFileName(string $data): bool
+{
 	if (!isset($data)) { return false; }
 	$name = Sanitize(basename($data));
 	return basename($data) === $name;
 }
+
 function ValidateMIMEType(ImageVars $img) {
 //	$check = getimagesize($img->tempFile);
 //	if (is_array($check)) {
@@ -196,7 +210,7 @@ function ValidateMIMEType(ImageVars $img) {
 // ===============================================================
 
 // Sign In: Check if email is registered in DB
-function CheckEmail(DatabaseVars $db, UserVars $user)
+function CheckEmail(DatabaseVars $db, UserVars $user): bool
 {
 	$sql = "SELECT email FROM $db->dbName.$db->dbTable WHERE email = '$user->email'";
 
@@ -205,7 +219,7 @@ function CheckEmail(DatabaseVars $db, UserVars $user)
 	return $db->link->query($sql)->num_rows !== 0;
 }
 // Sign In: Check if passwords match
-function CheckPasswords(DatabaseVars $db, UserVars $user)
+function CheckPasswords(DatabaseVars $db, UserVars $user): bool
 {
 	$sql = "SELECT pass FROM $db->dbTable WHERE email = '$user->email'";
 	
@@ -220,7 +234,7 @@ function CheckPasswords(DatabaseVars $db, UserVars $user)
 	return true; // if match
 }
 // Sign In: actual sign in processing
-function SignIn(DatabaseVars $db, UserVars $user)
+function SignIn(DatabaseVars $db, UserVars $user): bool
 {
 	if (!SelectDB($db))              {return false;}
 	if (!ValidateInput($user))       {return false;}
@@ -243,7 +257,7 @@ function SignIn(DatabaseVars $db, UserVars $user)
 // ===============================================================
 
 // Sign Up: Add user to database
-function AddUser(DatabaseVars $db, UserVars $user)
+function AddUser(DatabaseVars $db, UserVars $user): bool
 {
 	$hashedPass = password_hash($user->pass, PASSWORD_DEFAULT);
 	$sql = "INSERT INTO $db->dbName.$db->dbTable (firstname, lastname, email, pass) VALUES ('$user->firstname', '$user->lastname', '$user->email', '$hashedPass')";
@@ -261,7 +275,7 @@ function AddUser(DatabaseVars $db, UserVars $user)
 	return true;
 }
 // Sign Up: actual sign up processing
-function SignUp(DatabaseVars $db, UserVars $user)
+function SignUp(DatabaseVars $db, UserVars $user): bool
 {
 	if (!SelectDB($db))         {return false;}
 	if (!ValidateInput($user))  {return false;}
@@ -279,7 +293,8 @@ function SignUp(DatabaseVars $db, UserVars $user)
 // ===============================================================
 
 // Profile: updates user data
-function UpdateUserData(DatabaseVars $db, UserVars $user) {
+function UpdateUserData(DatabaseVars $db, UserVars $user): bool
+{
 	if (!SelectDB($db)) { return false; }
 	$user->firstname = Sanitize($_POST['firstname']);
 	$user->lastname  = Sanitize($_POST['lastname']);
@@ -300,7 +315,8 @@ function UpdateUserData(DatabaseVars $db, UserVars $user) {
 	return true;
 }
 // Profile: updates user image
-function UpdateUserImage(DatabaseVars $db, UserVars $user, ImageVars $img) {
+function UpdateUserImage(DatabaseVars $db, UserVars $user, ImageVars $img): bool
+{
 	if (!SelectDB($db)) {return false;}
 
 	$sql = "UPDATE $db->dbName.$db->dbTable SET userimage = '$img->file2upload' WHERE email = '$user->email'";
@@ -316,7 +332,8 @@ function UpdateUserImage(DatabaseVars $db, UserVars $user, ImageVars $img) {
 	return true;
 }
 // Profile: retrieve user data from DB
-function GetUserData(DatabaseVars $db, UserVars $user) {
+function GetUserData(DatabaseVars $db, UserVars $user): bool
+{
 	if (!SelectDB($db)) {return false;}
 
 	$sql = "SELECT * FROM $db->dbName.$db->dbTable WHERE email='$user->email'";
@@ -339,7 +356,8 @@ function GetUserData(DatabaseVars $db, UserVars $user) {
 	return true;
 }
 // Profile: retrieve name of currently assigned user image from DB
-function GetUserImage(DatabaseVars $db, UserVars $user, ImageVars $img) {
+function GetUserImage(DatabaseVars $db, UserVars $user, ImageVars $img): bool
+{
 	if (!SelectDB($db)) {return false;}
 
 	$sql = "SELECT userimage FROM $db->dbName.$db->dbTable WHERE email = '$user->email'";
@@ -350,7 +368,8 @@ function GetUserImage(DatabaseVars $db, UserVars $user, ImageVars $img) {
 	return true;
 }
 // Profile: upload profile image to proper folder
-function UploadImage(ImageVars $img) {
+function UploadImage(ImageVars $img): bool
+{
 	//check filename of file being uploaded
 	if (!ValidateFileName($_FILES['file2Upload']['name'])) {
 		$img->msg = 'Filename is strange.';

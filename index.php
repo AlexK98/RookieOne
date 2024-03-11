@@ -54,7 +54,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 		<div class="iblock form width678 formTopLine pa20" style="position: relative; z-index: -3;">
 			<h1>We Build The Future</h1>
 			<div class="iShadow iSize iblock">
-				<img class="iLogo iSize" src="images/_logo.png" style="position: relative; z-index: -2; text-align: center;">
+				<img class="iLogo iSize" src="images/_logo.png" style="position: relative; z-index: -2; text-align: center;" alt="Logo">
 			</div>
 		</div>
 	</section>

@@ -32,9 +32,9 @@ require_once 'back_funcs.php';
 require_once 'back_funcs_database.php';
 
 // some defines
-define('FIELD_REQUIRED', 'This field can\'t be empty.');
-define('FIELD_HACK_WARN', 'Error! Your entered strange text.');
-define('SIZE_LIMIT', 2000000); //image size limit
+const FIELD_REQUIRED = 'This field can\'t be empty.';
+const FIELD_HACK_WARN = 'Error! Your entered strange text.';
+const SIZE_LIMIT = 2000000; //image size limit
 
 // site variables init
 $db   = new DatabaseVars();

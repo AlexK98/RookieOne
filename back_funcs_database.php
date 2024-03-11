@@ -23,7 +23,8 @@
 // =====================================
 // DATABASE FUNCTIONS ==================
 // =====================================
-function ConnectToHost(DatabaseVars $db) {
+function ConnectToHost(DatabaseVars $db): bool
+{
 	$db->link = new mysqli($db->host, $db->user, $db->pass);
 	if (!$db->link) {
 		$_SESSION['msgDB'] = 'Connect error: ' . $db->link->connect_errno . '.' . $db->link->connect_error;
@@ -33,7 +34,7 @@ function ConnectToHost(DatabaseVars $db) {
 	return true;
 }
 
-function CheckConnectionToHost(DatabaseVars $db)
+function CheckConnectionToHost(DatabaseVars $db): bool
 {
 	if (!$db->link->stat()) {
 		$_SESSION['msgDB'] = 'Server is offline. ' . $db->link->error;
@@ -43,7 +44,7 @@ function CheckConnectionToHost(DatabaseVars $db)
 	return true;
 }
 
-function SelectDB(DatabaseVars $db)
+function SelectDB(DatabaseVars $db): bool
 {
 	if (!$db->link->select_db($db->dbName)) {
 		$_SESSION['msgDB'] = 'Sorry, Select DB failed. ' . $db->link->error;
@@ -53,20 +54,20 @@ function SelectDB(DatabaseVars $db)
 	return true;
 }
 
-function CreateDB(DatabaseVars $db)
+function CreateDB(DatabaseVars $db): bool
 {
 	$sql = "CREATE DATABASE IF NOT EXISTS $db->dbName CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci";
 
 	$result = $db->link->query($sql); //OBJECT, TRUE or FALSE
 	if ($result === FALSE) {
 		$_SESSION['msgDB'] = "Error creating database '$db->dbName': " . $db->link->error;
-   	return false;
+       	return false;
 	}
 	$_SESSION['msgDB'] = "Database '$db->dbName' created.";
 	return true;
 }
 
-function CreateTable(DatabaseVars $db)
+function CreateTable(DatabaseVars $db): bool
 {
 	$sql = "CREATE TABLE IF NOT EXISTS $db->dbName.$db->dbTable (
 			id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -89,7 +90,7 @@ function CreateTable(DatabaseVars $db)
 	return true;
 }
 
-function CreateTableIndex(DatabaseVars $db)
+function CreateTableIndex(DatabaseVars $db): bool
 {
 	$sql = "CREATE INDEX email_index ON $db->dbName.$db->dbTable ($db->dbIndex) USING BTREE;";
 	$result = $db->link->query($sql);
@@ -102,7 +103,7 @@ function CreateTableIndex(DatabaseVars $db)
 	return true;
 }
 
-function InitDB(DatabaseVars $db)
+function InitDB(DatabaseVars $db): bool
 {
 	$_SESSION['dbCreated'] = 0;
 	$cdb = CreateDB($db);
@@ -117,7 +118,7 @@ function InitDB(DatabaseVars $db)
 	return true;
 }
 
-function ResetDB(DatabaseVars $db)
+function ResetDB(DatabaseVars $db): bool
 {
 	if (!SelectDB($db)) { return false; }
 
